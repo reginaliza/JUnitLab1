@@ -11,14 +11,14 @@ import java.util.Collection;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
-public class testRegister {
+public class TestRegister {
 
     SMS sms = new SMS();
 
     private String input;
     private String expectedOutput;
 
-    public testRegister(String input, String expectedOutput) {
+    public TestRegister(String input, String expectedOutput) {
         this.input = input;
         this.expectedOutput = expectedOutput;
     }
@@ -28,7 +28,7 @@ public class testRegister {
         String expectedOutputs[][] = {
                 {"Register", "register"},
                 {"REGISTER", "register"},
-                {"register", "register"},
+                {"  register", "register"},
                 {"1rEgIsTeR", "register"}
         };
         return Arrays.asList(expectedOutputs);
