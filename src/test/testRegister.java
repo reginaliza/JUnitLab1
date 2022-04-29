@@ -26,10 +26,13 @@ public class TestRegister {
     @Parameterized.Parameters
     public static Collection<String[]> registerConditions() {
         String expectedOutputs[][] = {
-                {"Register", "register"},
-                {"REGISTER", "register"},
-                {"  register", "register"},
-                {"1rEgIsTeR", "register"}
+                {"Register", "register"}, //success
+                {"REGISTER", "register"}, //success
+                {"register", "register"}, //success
+                {"rEgIsTeR", "register"},//success
+                {"  register", "register"}, //failed because of whitespace
+                {"reg1ster", "register"}, //failed because of number
+                {"reg!ster", "register"} //failed because of special character
         };
         return Arrays.asList(expectedOutputs);
     }
@@ -46,13 +49,4 @@ public class TestRegister {
         assertEquals(expected, actual);
     }
 
-    /* //OLD TEST
-    @Test
-    public void testRegister() {
-        String actual = sms.register("ReGiSteR");
-        String expected = "register";
-        assertEquals(expected, actual);
-    }
-
-     */
 }
