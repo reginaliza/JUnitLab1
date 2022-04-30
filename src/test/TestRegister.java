@@ -32,7 +32,8 @@ public class TestRegister {
                 {"rEgIsTeR", "register"},//success
                 {"  register", "register"}, //failed because of whitespace
                 {"reg1ster", "register"}, //failed because of number
-                {"reg!ster", "register"} //failed because of special character
+                {"reg!ster", "register"}, //failed because of special character
+                {" regi ster ", "register"} //failed because of spaces
         };
         return Arrays.asList(expectedOutputs);
     }
@@ -42,11 +43,5 @@ public class TestRegister {
         assertEquals(expectedOutput, sms.register(input));
     }
 
-    @Test
-    public void testMSISDN() {
-        String actual = sms.mobileNumber("09177132479");
-        String expected = "09177132479";
-        assertEquals(expected, actual);
-    }
 
 }

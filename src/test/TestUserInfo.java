@@ -44,7 +44,7 @@ public class TestUserInfo {
     public void user4() {
         SMSModel sms = new SMSModel();
 
-        sms.setMessage("Regina Diloy, XXX, Bacoor City");
+        sms.setMessage("Regina Diloy, XXXX-XX-XX, Bacoor City");
 
         assertTrue(SMS.hasValidMessageInput(sms));
     }
@@ -54,6 +54,15 @@ public class TestUserInfo {
         SMSModel sms = new SMSModel();
 
         sms.setMessage("CJ Corona, 1997-11-12");
+
+        assertTrue(SMS.hasValidMessageInput(sms));
+    }
+
+    @Test
+    public void user6() {
+        SMSModel sms = new SMSModel();
+
+        sms.setMessage("Regina Diloy, 04-21-1998, Bacoor City");
 
         assertTrue(SMS.hasValidMessageInput(sms));
     }
