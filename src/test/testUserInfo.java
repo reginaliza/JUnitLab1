@@ -3,63 +3,59 @@ package test;
 import model.SMSModel;
 import model.SMS;
 import org.junit.Test;
-import java.util.HashMap;
+
 import static org.junit.Assert.*;
 
 public class TestUserInfo {
 
-    // *************** NOT WORKING ***
-    @Test
-    public void testUser1(){
-        HashMap<String, String> entry = new HashMap<>();
-        SMSModel sms = new SMSModel();
-        entry.put("Message", "register");
-        entry.put("First Name", "Regina");
-        entry.put("Last Name", "Diloy");
-        entry.put("Birthday: Year", "1998");
-        entry.put("Birthday: Month", "04");
-        entry.put("Birthday: Day", "21");
-        entry.put("Address", "Bacoor City");
 
-        assertNotNull("Verify that HashMap is not NULL", sms);
-        assertEquals(SMS.checkUserInfo(entry, sms), "Success");
-    } // WITH ERROR
+    // ******************* SUCCESS TEST CASES ****
 
-
-    // ******************* WORKING TEST CASES ****
     @Test
     public void user1() {
-        SMS sms = new SMS();
+        SMSModel sms = new SMSModel();
 
-        String firstName = "Regina";
-        String lastName = "Diloy";
-        String birthday = "1998-04-21";
-        String address = "Bacoor City";
+        sms.setMessage("Regina Diloy, 1998-04-21, Bacoor City");
 
-        assertEquals("Regina Diloy, 1998-04-21, Bacoor City", sms.userInfo(firstName, lastName, birthday, address));
+        assertTrue(SMS.hasValidMessageInput(sms));
     }
 
     @Test
     public void user2() {
-        SMS sms = new SMS();
+        SMSModel sms = new SMSModel();
 
-        String firstName = "Regina";
-        String lastName = "Diloy";
-        String birthday = "XXX";
-        String address = "Bacoor City";
+        sms.setMessage("CJ Corona, 1997-11-12, Makati City");
 
-        assertEquals("Regina Diloy, 1998-04-21, Bacoor City", sms.userInfo(firstName, lastName, birthday, address));
+        assertTrue(SMS.hasValidMessageInput(sms));
     }
 
     @Test
     public void user3() {
-        SMS sms = new SMS();
+        SMSModel sms = new SMSModel();
 
-        String firstName = "Regina";
-        String lastName = "Diloy";
-        String birthday = "04-21-1998";
-        String address = "Bacoor City";
+        sms.setMessage("Marco Valmores, 1973-09-10, Marikina City");
 
-        assertEquals("Regina Diloy, 1998-04-21, Bacoor City", sms.userInfo(firstName, lastName, birthday, address));
+        assertTrue(SMS.hasValidMessageInput(sms));
     }
+
+    // ******************* FAILED TEST CASES ****
+
+    @Test
+    public void user4() {
+        SMSModel sms = new SMSModel();
+
+        sms.setMessage("Regina Diloy, XXX, Bacoor City");
+
+        assertTrue(SMS.hasValidMessageInput(sms));
+    }
+
+    @Test
+    public void user5() {
+        SMSModel sms = new SMSModel();
+
+        sms.setMessage("CJ Corona, 1997-11-12");
+
+        assertTrue(SMS.hasValidMessageInput(sms));
+    }
+
 }

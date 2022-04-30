@@ -11,6 +11,7 @@ public class UserDetails {
         this.birthday = birthday;
     }
 
+
     public String getFullName() {
         return fullName;
     }
